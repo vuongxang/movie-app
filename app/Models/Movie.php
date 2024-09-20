@@ -14,8 +14,23 @@ class Movie extends Model
         'trailer_url', 'language', 'rated'
     ];
 
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class, 'movie_actor');
+    }
+
+    public function directors()
+    {
+        return $this->belongsToMany(Director::class, 'movie_director');
+    }
+
     public function genres()
     {
-        return $this->belongsToMany(Genre::class, 'genre_movie');
+        return $this->belongsToMany(Genre::class, 'movie_genre');
+    }
+
+    public function showtimes()
+    {
+        return $this->hasMany(Showtime::class);
     }
 }

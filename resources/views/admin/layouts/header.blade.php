@@ -19,6 +19,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('showtimes.index') }}">Xuất chiếu</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('movies.index') }}">Phim</a>
+                    </li>
                 </ul>
             </div>
         </div>
