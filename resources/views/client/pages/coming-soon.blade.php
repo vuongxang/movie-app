@@ -7,6 +7,7 @@
     <div class="container mt-5">
         <div class="row">
             <h2 class="text-center mb-4">Phim Sắp Chiếu</h2>
+            {!! Breadcrumbs::render('coming-soon') !!}
             @foreach($movies as $movie)
                 <div class="col-md-3 mb-4">
                     <div class="card">
