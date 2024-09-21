@@ -1,12 +1,10 @@
 @extends('client.layouts.index')
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/client/pages/home.css') }}">
-@endsection
 @section('title', 'Trang Chủ')
 @section('content')
     <div class="container mt-5">
         <div class="row">
             <h2 class="text-center mb-4">Phim Đang Chiếu</h2>
+            {!! Breadcrumbs::render('now-showing') !!}
             @foreach($movies as $movie)
                 <div class="col-md-3 mb-4">
                     <div class="card">

@@ -11,7 +11,7 @@
                 <div class="col-md-3 mb-4">
                     <div class="card">
                         <div class="product-images">
-                            <a class="product-images" href="{{ route('movies.show', $movie->id) }}">
+                            <a class="product-images" href="{{ route('movies.detail', $movie->id) }}">
                                 <img src="{{ asset('storage/' . $movie->poster_url) }}" class="card-img-top" alt="{{ $movie->title }}">
                             </a>
                         </div>

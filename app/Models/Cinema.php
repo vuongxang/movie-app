@@ -18,4 +18,13 @@ class Cinema extends Model
         'phone',
     ];
 
+    public function showtimes()
+    {
+        return $this->hasMany(Showtime::class);
+    }
+
+    public function halls()
+    {
+        return $this->hasMany(Hall::class);
+    }
 }

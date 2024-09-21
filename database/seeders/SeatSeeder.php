@@ -8,26 +8,28 @@ use App\Models\Hall;
 
 class SeatSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
         $halls = Hall::all();
 
         foreach ($halls as $hall) {
             $capacity = $hall->seat_capacity;
-            $rows = ceil($capacity / 15);
+            $rows = ceil($capacity / 13); // Giả định mỗi hàng có 13 ghế
+            $columns = 13;
 
-            for ($row = 'A'; $row < chr(ord('A') + $rows); $row++) {
-                for ($i = 1; $i <= min(15, $capacity); $i++) {
+            $alphabet = range('A', 'Z'); // Mã hàng: A, B, C, ...
+
+            for ($row = 0; $row < $rows; $row++) {
+                for ($col = 1; $col <= $columns; $col++) {
+                    if (($row * $columns + $col) > $capacity) break;
+
                     Seat::create([
                         'hall_id' => $hall->id,
-                        'seat_number' => $row . $i,
-                        'seat_type' => ($i % 3 == 0) ? 'VIP' : 'Standard',
+                        'seat_number' => $alphabet[$row] . $col,
+                        'seat_type' => 'standard', // Hoặc kiểu ghế khác nếu có
+                        'row_name' => $row + 1,
+                        'column_name' => $alphabet[$row],
                     ]);
-                    $capacity--;
-                    if ($capacity <= 0) break 2;
                 }
             }
         }

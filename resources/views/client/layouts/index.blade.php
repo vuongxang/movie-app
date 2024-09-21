@@ -11,14 +11,17 @@
     <link rel="icon" href="{{ asset('/images/logo.png') }}">
 
     <script src="{{ asset('js/app.js') }}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-{{--    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('css/netdna.bootstrap.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('css/base.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('css/client/layouts/header.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('css/client/layouts/footer.css') }}">--}}
     @yield('css')
+    <style>
+        .container-custom {
+            max-width: 980px;
+            margin: 0 auto; /* Căn giữa */
+            padding: 20px; /* Thêm khoảng cách */
+        }
+    </style>
 </head>
 
 <body>
@@ -31,7 +34,12 @@
     @include('client.layouts.footer')
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Include full version of jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
 @yield('script')
 
 </body>

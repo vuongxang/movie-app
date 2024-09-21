@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cinema;
 use App\Models\Showtime;
 use App\Models\Movie;
 use App\Models\Hall;
@@ -63,4 +64,21 @@ class ShowtimeController extends Controller
         $showtime->delete();
         return redirect()->route('showtimes.index')->with('success', 'Showtime deleted successfully.');
     }
+
+    public function getShowtimes(Request $request)
+    {
+        $date = $request->input('date');
+        $city = $request->input('city');
+
+        // Lấy rạp và suất chiếu dựa vào ngày và tỉnh thành
+        $cinemas = Cinema::where('city', $city)
+            ->with(['halls.showtimes' => function ($query) use ($date) {
+                $query->where('show_date', $date);
+            }])
+            ->get();
+
+        // Render view cho suất chiếu
+        return view('client.blocks.showtimes', ['cinemas' => $cinemas]);
+    }
+
 }

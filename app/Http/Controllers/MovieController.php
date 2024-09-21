@@ -121,4 +121,9 @@ class MovieController extends Controller
         return view('client.pages.coming-soon',['movies' => $comingSoonMovies]);
     }
 
+    public function detail($id)
+    {
+        $movie = Movie::with(['actors', 'directors', 'genres'])->findOrFail($id);
+        return view('client.pages.movie-detail', compact('movie'));
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SeatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\HallController;
@@ -24,6 +25,10 @@ use App\Http\Controllers\GenreController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('now-showing', [MovieController::class, 'nowShowing'])->name('now-showing');
 Route::get('coming-soon', [MovieController::class, 'comingSoon'])->name('coming-soon');
+Route::get('/movies/{id}', [MovieController::class, 'detail'])->name('movies.detail');
+Route::get('/get-showtimes', [ShowtimeController::class, 'getShowtimes']);
+Route::get('/showtimes/{showtime_id}/seats', [SeatController::class, 'seatSelection'])->name('showtime.seatSelection');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
