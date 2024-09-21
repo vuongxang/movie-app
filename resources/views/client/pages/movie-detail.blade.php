@@ -1,81 +1,90 @@
 @extends('client.layouts.index')
 
 @section('title', $movie->title)
-
+@section('breadcrumbs')
+    <!-- Breadcrumbs -->
+    <div>
+        {!! Breadcrumbs::render('movies.detail') !!}
+    </div>
+@endsection
 @section('content')
 
     <div class="container movie-detail-container">
+        <div class="col-12 mb-4 border-thickx">
+            <h1 class="my-4 font-weight-normal ">Nội dung phim</h1>
+
+        </div>
         <div class="row">
-            <!-- Phần ảnh bên trái -->
-            <div class="col-md-4">
-                <img src="{{ asset('storage/' . $movie->poster_url) }}" alt="{{ $movie->title }}" class="img-fluid movie-poster">
+            <div class="col-md-3">
+                <img src="{{ asset('storage/' . $movie->poster_url) }}" alt="{{ $movie->title }}"
+                     class="img-fluid movie-poster">
             </div>
 
-            <!-- Phần thông tin phim bên phải -->
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="movie-info">
                     <h2 class="movie-title">{{ $movie->title }}</h2>
                     <ul class="list-unstyled movie-details">
-                        <li><strong>Đạo diễn:</strong> {{ implode(', ', $movie->directors->pluck('name')->toArray()) }}</li>
-                        <li><strong>Diễn viên:</strong> {{ implode(', ', $movie->actors->pluck('name')->toArray()) }}</li>
-                        <li><strong>Thể loại:</strong> {{ implode(', ', $movie->genres->pluck('name')->toArray()) }}</li>
+                        <li><strong>Đạo diễn:</strong> {{ implode(', ', $movie->directors->pluck('name')->toArray()) }}
+                        </li>
+                        <li><strong>Diễn viên:</strong> {{ implode(', ', $movie->actors->pluck('name')->toArray()) }}
+                        </li>
+                        <li><strong>Thể loại:</strong> {{ implode(', ', $movie->genres->pluck('name')->toArray()) }}
+                        </li>
                         <li><strong>Khởi chiếu:</strong> {{ $movie->release_date}}</li>
                         <li><strong>Thời lượng:</strong> {{ $movie->duration }} phút</li>
                         <li><strong>Ngôn ngữ:</strong> {{ $movie->language }}</li>
                         <li><strong>Rated:</strong> {{ $movie->rated }}</li>
                     </ul>
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#bookingModal">
-                        Đặt Vé
-                    </button>
+
+                    <div class="add-to-links justify-content-start d-flex align-items-center">
+                        <div class="mr-4">
+                            <button class="btn btn-sm like-button">
+                                <i class="fa fa-thumbs-up"></i> Like 199
+                            </button>
+                        </div>
+                        <button type="button" title="Mua vé" class="btn btn-danger btn-booking " data-toggle="modal"
+                                data-target="#bookingModal">
+                            <i class="fa-solid fa-phone-flip"></i>
+                            <span>MUA VÉ</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Mô tả phim -->
         <div class="row movie-description">
-            <div class="col-12">
-                <h3>Mô tả</h3>
-                <p>{{ $movie->description }}</p>
+            <div class="container">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                           aria-selected="true">Chi tiết</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                           aria-controls="profile" aria-selected="false">Trailer</a>
+                    </li>
+                </ul>
+
+                <!-- Tab content -->
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <p>{{ $movie->description }}</p>
+                    </div>
+                    <div class="tab-pane fade mt-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <iframe width="560" height="315"
+                                src="https://www.youtube.com/embed/_8qUFEmPQbc?si=HKzJT-ciUQk22prB"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
     @include('client.blocks.bocking-modal')
 
 @endsection
-
-
-<!-- Custom CSS -->
-<style>
-    .movie-detail-container {
-        max-width: 980px;
-        margin: 0 auto;
-        padding-top: 20px;
-    }
-    .movie-poster {
-        max-width: 100%;
-        height: auto;
-    }
-    .movie-info {
-        padding-left: 20px;
-    }
-    .movie-title {
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-    .movie-details li {
-        margin-bottom: 10px;
-    }
-    .movie-description {
-        margin-top: 30px;
-    }
-    .btn-primary {
-        background-color: #e71a0f;
-        border-color: #e71a0f;
-    }
-    .btn-primary:hover {
-        background-color: #d4190e;
-        border-color: #d4190e;
-    }
-</style>
 

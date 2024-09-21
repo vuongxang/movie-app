@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeatController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +29,13 @@ Route::get('now-showing', [MovieController::class, 'nowShowing'])->name('now-sho
 Route::get('coming-soon', [MovieController::class, 'comingSoon'])->name('coming-soon');
 Route::get('/movies/{id}', [MovieController::class, 'detail'])->name('movies.detail');
 Route::get('/get-showtimes', [ShowtimeController::class, 'getShowtimes']);
-Route::get('/showtimes/{showtime_id}/seats', [SeatController::class, 'seatSelection'])->name('showtime.seatSelection');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/showtimes/{showtime_id}/seats', [SeatController::class, 'seatSelection'])->name('showtime.seatSelection');
+    Route::post('/payment', [PaymentController::class, 'showPayment'])->name('payment.show');
+    Route::post('/payment/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
+    Route::get('/booking/success/{booking}', [BookingController::class, 'showSuccess'])->name('booking.success');
+});
 
 
 Route::get('/dashboard', function () {

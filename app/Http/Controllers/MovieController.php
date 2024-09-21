@@ -53,7 +53,7 @@ class MovieController extends Controller
 
     public function show(Movie $movie)
     {
-        return view('movies.show', compact('movie'));
+        return view('movies.detail', compact('movie'));
     }
 
     public function edit(Movie $movie)
@@ -107,17 +107,13 @@ class MovieController extends Controller
 
     public function nowShowing()
     {
-        $nowShowingMovies = Movie::whereHas('showtimes', function($query) {
-            $query->where('show_time', '>=', Carbon::now());
-        })->get();
+        $nowShowingMovies = Movie::all();
         return view('client.pages.now-showing',['movies' => $nowShowingMovies]);
     }
 
     public function comingSoon()
     {
-        $comingSoonMovies = Movie::whereHas('showtimes', function($query) {
-            $query->where('show_time', '>=', Carbon::now());
-        })->get();
+        $comingSoonMovies = Movie::all();
         return view('client.pages.coming-soon',['movies' => $comingSoonMovies]);
     }
 
