@@ -48,12 +48,12 @@
 
     <div class="d-flex justify-content-start align-items-center">
         <a class="logo" href="{{route('home')}}">
-            <img src="https://www.cgv.vn/skin/frontend/cgv/default/images/cgvlogo.png" alt="CGV Cinemas"
+            <img src="{{asset('images/cgvlogo.png')}}" alt="CGV Cinemas"
                  class="img-fluid"/>
         </a>
 
         <!-- Navigation -->
-        <nav id="nav" class="navbar navbar-expand-lg nav-primary">
+        <nav id="nav" class="navbar navbar-expand-lg nav-primary pt-4">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

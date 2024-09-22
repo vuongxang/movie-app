@@ -1,66 +1,57 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ứng Dụng Đặt Vé Xem Phim
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Giới Thiệu
+Ứng dụng này cho phép người dùng đặt vé xem phim một cách dễ dàng và nhanh chóng. Người dùng có thể chọn phim, ghế ngồi và thực hiện thanh toán trực tuyến.
 
-## About Laravel
+## Bước 1: Cài Đặt Môi Trường
+- Đảm bảo bạn đã cài đặt [PHP](https://www.php.net/downloads) (phiên bản 8.0 trở lên) và [Composer](https://getcomposer.org/download/).
+- Cài đặt [Laravel](https://laravel.com/docs/9.x/installation) bằng Composer.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Bước 2: Clone Repository
+```bash
+   git clone https://github.com/vuongxang/movie-app.git
+   cd movie-ticket-booking 
+   ```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Bước 3: Cài Đặt Thư Viện
+Chạy lệnh sau trong thư mục gốc của dự án:
+```bash
+composer install
+```
+## Bước 4: Cấu Hình Ứng Dụng
+1. **Tạo file `.env`:**
+    - Sao chép file `.env.example` thành `.env`.
+    - Cấu hình các thông tin kết nối cơ sở dữ liệu và các thông tin khác trong file `.env`.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. **Chạy migration:**
+```bash
+   php artisan migrate
+   ```
 
-## Learning Laravel
+## Bước 5: Chạy Ứng Dụng
+Chạy lệnh sau để khởi động server:
+```bash
+php artisan serve
+   ```
+Truy cập ứng dụng tại `http://localhost:8000`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Ảnh Giao Diện
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Trang danh sách:
+  ![Giao diện trang danh_sách_phim](images/listing-page.png)
+- Trang chi tiết phim:
+  ![Giao diện trang chi_tiết_phim](images/detail-page.png)
+- Popup lựa chọn xuất chiếu phim:
+  ![Giao diện trang chi_tiết_phim](images/booking-modal.png)
+- Trang lựa chọn vị trí ghế ngồi:
+  ![Giao diện trang showtime](images/showtime-page.png)
+- Trang Thanh toán:
+  ![Giao diện trang_thanh_toán](images/payment.png)
+- Trang đặt vé thành công:
+  ![Giao diện trang success](images/success.png)
+- Trang admin quản lý phim:
+  ![Giao diện trang admin_phim](images/admin-movie-listing.png)
+- Trang admin danh sách vé:
+  ![Giao diện trang admin_vé](images/admin-listing-ticket.png)
+## Liên Hệ
+Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với chúng tôi qua email: [luongvuong6458@gmail.com](mailto:luongvuong6458@gmail.com).
