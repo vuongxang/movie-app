@@ -33,7 +33,7 @@
                         <li><strong>Khởi chiếu:</strong> {{ $movie->release_date}}</li>
                         <li><strong>Thời lượng:</strong> {{ $movie->duration }} phút</li>
                         <li><strong>Ngôn ngữ:</strong> {{ $movie->language }}</li>
-                        <li><strong>Rated:</strong> {{ $movie->rated }}</li>
+                        <li><strong>Rated:</strong> {{ \App\Models\Movie::RATED_OPTIONS[$movie->rated] ?? 'N/A' }}</li>
                     </ul>
 
                     <div class="add-to-links justify-content-start d-flex align-items-center">

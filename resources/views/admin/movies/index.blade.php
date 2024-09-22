@@ -1,37 +1,46 @@
 @extends('admin.layouts.index')
-@section('title', 'Danh sách Phim')
+@section('title', 'Danh Sách Phim')
+
 @section('content')
-    <div class="container">
-        <h1 class="mb-4">Danh sách Phim</h1>
-        <a href="{{ route('movies.create') }}" class="btn btn-primary mb-3">Tạo Phim Mới</a>
-        <table class="table table-striped">
-            <thead>
+    <div class="container mt-4">
+        <h1>Danh Sách Phim</h1>
+        <a href="{{ route('movies.create') }}" class="btn btn-success mb-2">Tạo Phim Mới</a>
+
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
             <tr>
-                <th>ID</th>
-                <th>Tựa đề</th>
-                <th>Ảnh bìa</th>
-                <th>Thời lượng</th>
-                <th>Ngày phát hành</th>
+                <th>STT</th>
+                <th>Tựa Đề</th>
+                <th>Ảnh Bìa</th>
+                <th>Thời Lượng</th>
+                <th>Ngày Phát Hành</th>
                 <th>Rated</th>
-                <th>Hành động</th>
+                <th width="280px">Hành Động</th>
             </tr>
             </thead>
             <tbody>
             @foreach($movies as $movie)
                 <tr>
-                    <td>{{ $movie->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $movie->title }}</td>
                     <td>
                         @if($movie->poster_url)
-                            <img src="{{ asset('storage/' . $movie->poster_url) }}" alt="Poster" style="max-width: 100px;">
+                            <img src="{{ asset('storage/' . $movie->poster_url) }}" alt="Poster" style="max-width: 30px">
                         @endif
                     </td>
                     <td>{{ $movie->duration }} phút</td>
                     <td>{{ $movie->release_date }}</td>
-                    <td>{{ $movie->rated }}</td>
+                    <td>{{ \App\Models\Movie::RATED_OPTIONS[$movie->rated] ?? 'N/A' }}</td>
+
                     <td>
-                        <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-warning btn-sm">Sửa</a>
-                        <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-info btn-sm">Sửa</a>
+                        <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Xóa</button>

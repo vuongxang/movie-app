@@ -32,14 +32,11 @@ class MovieController extends Controller
             'description' => 'nullable',
             'duration' => 'required|integer',
             'release_date' => 'required|date',
-//            'poster_url' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
         $movie = new Movie();
-        $movie->title = $request->title;
-        $movie->description = $request->description;
-        $movie->duration = $request->duration;
-        $movie->release_date = $request->release_date;
+
+        $movie->fill($request->all());
 
         if ($request->hasFile('poster_url')) {
             $movie->poster_url = $request->file('poster_url')->store('posters', 'public');
@@ -47,6 +44,17 @@ class MovieController extends Controller
 
         $movie->save();
 
+        if ($request->has('actors')) {
+            $movie->actors()->sync($request->actors);
+        }
+
+        if ($request->has('directors')) {
+            $movie->directors()->sync($request->directors);
+        }
+
+        if ($request->has('genres')) {
+            $movie->genres()->sync($request->genres);
+        }
 
         return redirect()->route('movies.index')->with('success', 'Phim đã được tạo thành công!');
     }
@@ -68,36 +76,40 @@ class MovieController extends Controller
         return view('admin.movies.edit', compact('movie', 'actors', 'directors', 'genres', 'movieActors', 'movieDirectors', 'movieGenres'));
     }
 
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
             'description' => 'nullable',
             'duration' => 'required|integer',
             'release_date' => 'required|date',
-//            'poster_url' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $movie->title = $request->title;
-        $movie->description = $request->description;
-        $movie->duration = $request->duration;
-        $movie->release_date = $request->release_date;
+        $movie = Movie::findOrFail($id);
 
-        // Xử lý upload ảnh
+        $movie->fill($request->all());
+
         if ($request->hasFile('poster_url')) {
-            // Xóa ảnh cũ nếu có
-            if ($movie->poster_url) {
-                Storage::disk('public')->delete($movie->poster_url);
-            }
             $movie->poster_url = $request->file('poster_url')->store('posters', 'public');
         }
 
         $movie->save();
 
-        // Attach actors, directors, genres...
+        if ($request->has('actors')) {
+            $movie->actors()->sync($request->actors);
+        }
+
+        if ($request->has('directors')) {
+            $movie->directors()->sync($request->directors);
+        }
+
+        if ($request->has('genres')) {
+            $movie->genres()->sync($request->genres);
+        }
 
         return redirect()->route('movies.index')->with('success', 'Phim đã được cập nhật thành công!');
     }
+
 
     public function destroy(Movie $movie)
     {
@@ -107,13 +119,14 @@ class MovieController extends Controller
 
     public function nowShowing()
     {
-        $nowShowingMovies = Movie::all();
+        $nowShowingMovies = Movie::where('status', 'now-showing')->get();
+
         return view('client.pages.now-showing',['movies' => $nowShowingMovies]);
     }
 
     public function comingSoon()
     {
-        $comingSoonMovies = Movie::all();
+        $comingSoonMovies = Movie::where('status', 'coming-soon')->get();
         return view('client.pages.coming-soon',['movies' => $comingSoonMovies]);
     }
 

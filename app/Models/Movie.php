@@ -9,6 +9,14 @@ class Movie extends Model
 {
     use HasFactory;
 
+    const RATED_OPTIONS = [
+        'T18' => 'T18 - Phim được phổ biến đến người xem từ đủ 18 tuổi trở lên (18+)',
+        'T13' => 'T13 - Phim được phổ biến đến người xem từ đủ 13 tuổi trở lên (13+)',
+        'T16' => 'T16 - Phim được phổ biến đến người xem từ đủ 16 tuổi trở lên (16+)',
+        'K'   => 'K - Phim được phổ biến đến người xem dưới 13 tuổi và có người bảo hộ đi kèm',
+        'P'   => 'P - Phim được phép phổ biến đến người xem ở mọi độ tuổi.',
+    ];
+
     protected $fillable = [
         'title', 'description', 'duration', 'release_date', 'poster_url',
         'trailer_url', 'language', 'rated'

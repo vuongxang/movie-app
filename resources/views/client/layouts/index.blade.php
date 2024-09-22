@@ -136,6 +136,18 @@
             display: block;
             margin-top: 40px;
         }
+        .screen {
+            width: 100%;
+            height: 45px;
+            margin: 20px auto 40px;
+            text-align: center;
+            background: url({{asset('images/bg-screen.png')}}) no-repeat top center transparent;
+            background-size:100% auto;
+        }
+
+        .seat-selection form {
+            margin-top: 8.5rem;
+        }
     </style>
 </head>
 

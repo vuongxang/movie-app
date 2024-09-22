@@ -3,11 +3,10 @@
 @section('title', 'Chọn Ghế')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-4 mb-4">
         <h2>Chọn ghế cho suất chiếu {{ $showtime->time }} - {{ $showtime->hall->name }}</h2>
         <div class="seat-selection">
-            <div class="screen text-center mb-3">
-                <div class="alert alert-info">Màn hình</div>
+            <div class="screen text-center mb-4">
             </div>
             <form action="{{ route('payment.show') }}" method="POST">
                 @csrf

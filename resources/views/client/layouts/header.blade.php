@@ -65,7 +65,7 @@
                     <li class="nav-item dropdown mx-2">
                         <a class="nav-link text-dark font-weight-bold" href="#" id="cinemasDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RẠP CGV</a>
-                        <div class="dropdown-menu" aria-labelledby="cinemasDropdown">
+                        <div class="dropdown-menu  bg-dark border-light p-1" aria-labelledby="cinemasDropdown">
                             <a class="dropdown-item text-light font-weight-bold"
                                href="https://www.cgv.vn/default/cinox/site/">Tất Cả Các Rạp</a>
                             <a class="dropdown-item text-light font-weight-bold"
@@ -77,7 +77,7 @@
                     <li class="nav-item dropdown mx-3">
                         <a class="nav-link text-dark font-weight-bold" href="#" id="membersDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">THÀNH VIÊN</a>
-                        <div class="dropdown-menu" aria-labelledby="membersDropdown">
+                        <div class="dropdown-menu  bg-dark border-light p-1" aria-labelledby="membersDropdown">
                             <a class="dropdown-item text-light font-weight-bold"
                                href="https://www.cgv.vn/default/customer/account/login">Tài khoản CGV</a>
                             <a class="dropdown-item text-light font-weight-bold"
@@ -87,7 +87,7 @@
                     <li class="nav-item dropdown mx-3">
                         <a class="nav-link text-dark font-weight-bold" href="#" id="cultureplexDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CURTULEPLEX</a>
-                        <div class="dropdown-menu " aria-labelledby="cultureplexDropdown">
+                        <div class="dropdown-menu  bg-dark border-light p-1" aria-labelledby="cultureplexDropdown">
                             <a class="dropdown-item text-light font-weight-bold"
                                href="https://www.cgv.vn/default/online-store/movie-voucher.html">Quầy Online</a>
                             <a class="dropdown-item text-light font-weight-bold"

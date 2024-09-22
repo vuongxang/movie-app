@@ -16,6 +16,11 @@
                 <input type="file" name="poster_url" class="form-control" accept="image/*">
             </div>
             <div class="form-group">
+                <label for="title">Trailer url</label>
+                <input type="text" class="form-control" id="trailer_url" name="trailer_url" required>
+            </div>
+
+            <div class="form-group">
                 <label for="duration">Thời lượng (phút)</label>
                 <input type="number" class="form-control" id="duration" name="duration" required>
             </div>
@@ -27,7 +32,22 @@
 
             <div class="form-group">
                 <label for="rated">Rated</label>
-                <input type="text" class="form-control" id="rated" name="rated" required>
+                <select name="rated" id="rated" class="form-control" required>
+                    @foreach(Movie::RATED_OPTIONS as $code => $description)
+                        <option value="{{ $code }}">
+                            {{ $description }}
+                        </option>
+                    @endforeach
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label for="status">Trạng thái</label>
+                <select name="status" id="status" class="form-control" required>
+                    <option value="now-showing">Đang Chiếu</option>
+                    <option value="coming-soon">Sắp Chiếu</option>
+                </select>
             </div>
 
             <div class="form-group">
