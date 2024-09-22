@@ -56,6 +56,8 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::resource('halls', HallController::class);
     Route::resource('showtimes', ShowtimeController::class);
     Route::resource('movies', MovieController::class);
+    Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
+
 });
 
 require __DIR__ . '/auth.php';

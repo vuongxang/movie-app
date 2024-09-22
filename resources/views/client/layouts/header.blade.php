@@ -19,7 +19,13 @@
                             <a class="text-secondary text-uppercase"href="{{ url('/dashboard') }}">
                                 XIN CHÀO {{ Auth::user()->name }}!
                             </a>
-                            <a class="text-secondary" href="{{ route('logout') }}">ĐĂNG XUẤT</a>
+                            <a class="text-secondary" href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            >ĐĂNG XUẤT</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                @csrf
+                            </form>
                     @else
                         <a class="text-secondary" href="{{ route('login') }}">ĐĂNG NHẬP</a> /
                         @if (Route::has('register'))
