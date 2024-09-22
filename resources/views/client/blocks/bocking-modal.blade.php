@@ -8,11 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Hàng 1: Hiển thị ngày -->
                 <div class="form-group">
                     <label for="select-date">Chọn ngày:</label>
                     <div class="d-flex flex-wrap">
-                        <!-- Loop qua các ngày -->
                         @for ($i = 0; $i <= 30; $i++)
                             <button type="button" class="btn btn-outline-primary m-1 select-date" data-date="{{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') }}">
                                 {{ \Carbon\Carbon::now()->addDays($i)->format('d/m') }}
@@ -21,7 +19,6 @@
                     </div>
                 </div>
 
-                <!-- Hàng 2: Hiển thị tỉnh thành -->
                 <div class="form-group">
                     <label for="select-city">Chọn tỉnh thành:</label>
                     <div class="d-flex">
@@ -31,7 +28,6 @@
                     </div>
                 </div>
 
-                <!-- Hàng 3: Hiển thị rạp phim và suất chiếu -->
                 <div id="theater-schedule">
                     <p>Chọn ngày và tỉnh để hiển thị các rạp và suất chiếu.</p>
                 </div>
@@ -45,6 +41,12 @@
         let selectedDate = null;
         let selectedCity = null;
         let selectedShowtime = null;
+        let movieId = null;
+
+        $(document).on('click', '.btn-booking', function() {
+            movieId = $(this).data('movie-id');
+            console.log(movieId)
+        });
 
         // Khi chọn ngày
         $('.select-date').on('click', function () {
@@ -71,7 +73,8 @@
                     method: 'GET',
                     data: {
                         date: selectedDate,
-                        city: selectedCity
+                        city: selectedCity,
+                        movieId: movieId
                     },
                     success: function (data) {
                         $('#theater-schedule').html(data); // Cập nhật HTML của rạp và suất chiếu

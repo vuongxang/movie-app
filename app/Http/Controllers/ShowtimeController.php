@@ -69,11 +69,13 @@ class ShowtimeController extends Controller
     {
         $date = $request->input('date');
         $city = $request->input('city');
+        $movieId = $request->input('movieId'); // Nhận movieId từ request
 
-        // Lấy rạp và suất chiếu dựa vào ngày và tỉnh thành
+        // Lọc các rạp theo city và lấy các showtimes theo movieId và date
         $cinemas = Cinema::where('city', $city)
-            ->with(['halls.showtimes' => function ($query) use ($date) {
-                $query->where('show_date', $date);
+            ->with(['halls.showtimes' => function ($query) use ($date, $movieId) {
+                $query->where('show_date', $date)
+                    ->where('movie_id', $movieId); // Lọc theo movieId
             }])
             ->get();
 

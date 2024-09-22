@@ -43,7 +43,10 @@
                             </button>
                         </div>
                         <div>
-                            <button type="button" title="Mua vé" class="btn btn-danger btn-booking">
+                            <button type="button" title="Mua vé" class="btn btn-danger btn-booking"
+                                    data-toggle="modal"
+                                    data-target="#bookingModal"
+                                    data-movie-id="{{$movie->id}}">
                                 <i class="fa-solid fa-phone-flip"></i>
                                 <span>MUA VÉ</span>
                             </button>
@@ -54,4 +57,6 @@
             @endforeach
         </div>
     </div>
+    @include('client.blocks.bocking-modal')
+
 @endsection

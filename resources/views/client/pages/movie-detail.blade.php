@@ -42,7 +42,9 @@
                                 <i class="fa fa-thumbs-up"></i> Like 199
                             </button>
                         </div>
-                        <button type="button" title="Mua vé" class="btn btn-danger btn-booking " data-toggle="modal"
+                        <button type="button" title="Mua vé" class="btn btn-danger btn-booking"
+                                data-movie-id="{{$movie->id}}"
+                                data-toggle="modal"
                                 data-target="#bookingModal">
                             <i class="fa-solid fa-phone-flip"></i>
                             <span>MUA VÉ</span>

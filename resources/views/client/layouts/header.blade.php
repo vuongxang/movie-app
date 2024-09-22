@@ -2,7 +2,7 @@
     <div class="top-bar-banner">
         <img src="{{asset('images/top-bar-banner.jpg')}}"/>
     </div>
-    <div class="d-flex justify-content-end mt-1 text-secondary">
+    <div class="d-flex justify-content-end mt-2 text-secondary">
         <div class="mx-2">
             <img src="{{asset('images/icon_promotion25.png')}}">
             <span>TIN MỚI & ƯU ĐÃI</span>
@@ -16,21 +16,10 @@
                 <img src="{{asset('images/icon_login25.png')}}">
                 @if (Route::has('login'))
                     @auth
-                        <div class="dropdown">
-                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="accountDropdown"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tài khoản
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="accountDropdown">
-                                <a class="dropdown-item text-secondary" href="{{ url('/dashboard') }}">Dashboard</a>
-                                <a class="dropdown-item text-secondary" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
+                            <a class="text-secondary text-uppercase"href="{{ url('/dashboard') }}">
+                                XIN CHÀO {{ Auth::user()->name }}!
+                            </a>
+                            <a class="text-secondary" href="{{ route('logout') }}">ĐĂNG XUẤT</a>
                     @else
                         <a class="text-secondary" href="{{ route('login') }}">ĐĂNG NHẬP</a> /
                         @if (Route::has('register'))
@@ -41,7 +30,7 @@
             </div>
         </div>
         <div class="mx-2">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group h-75 d-flex align-items-center" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-sm btn-danger">VN</button>
                 <button type="button" class="btn btn-sm btn-secondary">EN</button>
             </div>
@@ -115,7 +104,7 @@
             </div>
         </nav>
     </div>
-    <div id="header-search" class="skip-content">
+    <div id="header-search" class="skip-content d-flex align-items-center pt-4">
 
         <div class="header-search-left">
             <p class="kenhcine"><a href="https://kenhcine.cgv.vn/"
@@ -133,31 +122,3 @@
     </div>
     </div>
 </header>
-<style>
-    .top-bar, header .container {
-        max-width: 980px;
-        margin: 0 auto; /* Căn giữa */
-        padding-right: 0;
-        padding-left: 0;
-        font-size: 14px;
-
-    }
-
-    .top-bar-banner img {
-        width: 980px;
-    }
-
-    .page-header {
-        width: 100%;
-        margin: 0 auto;
-        background: url({{asset('images/bg-top.png')}}) repeat-x scroll left bottom transparent;
-        background-size: 10px 135px;
-        height: 135px;
-    }
-
-    .nav-primary {
-        display: block;
-        margin-top: 40px;
-    }
-
-</style>

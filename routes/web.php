@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('genres', GenreController::class);
     Route::resource('cinemas', CinemaController::class);

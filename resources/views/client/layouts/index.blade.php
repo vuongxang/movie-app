@@ -110,6 +110,32 @@
             background-color: #d4190e;
             border-color: #d4190e;
         }
+
+        .top-bar, header .container {
+            max-width: 980px;
+            margin: 0 auto; /* Căn giữa */
+            padding-right: 0;
+            padding-left: 0;
+            font-size: 14px;
+
+        }
+
+        .top-bar-banner img {
+            width: 980px;
+        }
+
+        .page-header {
+            width: 100%;
+            margin: 0 auto;
+            background: url({{asset('images/bg-top.png')}}) repeat-x scroll left bottom transparent;
+            background-size: 10px 135px;
+            height: 135px;
+        }
+
+        .nav-primary {
+            display: block;
+            margin-top: 40px;
+        }
     </style>
 </head>
 
