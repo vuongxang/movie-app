@@ -9,27 +9,27 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="select-date">Chọn ngày:</label>
-                    <div class="d-flex flex-wrap">
+                    <label for="select-date" class="font-weight-bold mb-2">Chọn ngày:</label>
+                    <div class="date-selector d-flex flex-wrap">
                         @for ($i = 0; $i <= 30; $i++)
-                            <button type="button" class="btn btn-outline-primary m-1 select-date" data-date="{{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') }}">
+                            <button type="button" class="btn btn-outline-primary m-1 select-date rounded-pill" data-date="{{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') }}">
                                 {{ \Carbon\Carbon::now()->addDays($i)->format('d/m') }}
                             </button>
                         @endfor
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="select-city">Chọn tỉnh thành:</label>
-                    <div class="d-flex">
-                        <button type="button" class="btn btn-outline-primary m-1 select-city" data-city="Hà Nội">Hà Nội</button>
-                        <button type="button" class="btn btn-outline-primary m-1 select-city" data-city="Đà Nẵng">Đà Nẵng</button>
-                        <button type="button" class="btn btn-outline-primary m-1 select-city" data-city="Hồ Chí Minh">Hồ Chí Minh</button>
+                <div class="form-group mt-4">
+                    <label for="select-city" class="font-weight-bold mb-2">Chọn tỉnh thành:</label>
+                    <div class="city-selector d-flex">
+                        <button type="button" class="btn btn-outline-primary mr-2 select-city rounded-pill" data-city="Hà Nội">Hà Nội</button>
+                        <button type="button" class="btn btn-outline-primary mr-2 select-city rounded-pill" data-city="Đà Nẵng">Đà Nẵng</button>
+                        <button type="button" class="btn btn-outline-primary select-city rounded-pill" data-city="Hồ Chí Minh">Hồ Chí Minh</button>
                     </div>
                 </div>
 
-                <div id="theater-schedule">
-                    <p>Chọn ngày và tỉnh để hiển thị các rạp và suất chiếu.</p>
+                <div id="theater-schedule" class="mt-4">
+                    <p class="text-muted">Chọn ngày và tỉnh để hiển thị các rạp và suất chiếu.</p>
                 </div>
             </div>
         </div>
@@ -45,31 +45,27 @@
 
         $(document).on('click', '.btn-booking', function() {
             movieId = $(this).data('movie-id');
-            console.log(movieId)
+            console.log(movieId);
         });
 
-        // Khi chọn ngày
         $('.select-date').on('click', function () {
             selectedDate = $(this).data('date');
-            $('.select-date').removeClass('btn-primary').addClass('btn-outline-primary'); // Reset màu nút ngày
-            $(this).removeClass('btn-outline-primary').addClass('btn-primary'); // Đổi màu nút đã chọn
+            $('.select-date').removeClass('btn-primary').addClass('btn-outline-primary');
+            $(this).removeClass('btn-outline-primary').addClass('btn-primary');
             updateTheaterSchedule();
         });
 
-        // Khi chọn tỉnh thành
         $('.select-city').on('click', function () {
             selectedCity = $(this).data('city');
-            $('.select-city').removeClass('btn-primary').addClass('btn-outline-primary'); // Reset màu nút tỉnh
-            $(this).removeClass('btn-outline-primary').addClass('btn-primary'); // Đổi màu nút đã chọn
+            $('.select-city').removeClass('btn-primary').addClass('btn-outline-primary');
+            $(this).removeClass('btn-outline-primary').addClass('btn-primary');
             updateTheaterSchedule();
         });
 
-        // Hàm cập nhật rạp và suất chiếu dựa trên ngày và tỉnh đã chọn
         function updateTheaterSchedule() {
             if (selectedDate && selectedCity) {
-                // Gọi AJAX để lấy dữ liệu suất chiếu
                 $.ajax({
-                    url: '/get-showtimes', // Route Laravel để lấy dữ liệu suất chiếu
+                    url: '/get-showtimes',
                     method: 'GET',
                     data: {
                         date: selectedDate,
@@ -77,15 +73,13 @@
                         movieId: movieId
                     },
                     success: function (data) {
-                        $('#theater-schedule').html(data); // Cập nhật HTML của rạp và suất chiếu
+                        $('#theater-schedule').html(data);
                     }
                 });
             } else {
-                $('#theater-schedule').html('<p>Chọn ngày và tỉnh để hiển thị các rạp và suất chiếu.</p>');
-                $('#confirmBooking').prop('disabled', true); // Tắt nút Xác Nhận nếu chưa chọn
+                $('#theater-schedule').html('<p class="text-muted">Chọn ngày và tỉnh để hiển thị các rạp và suất chiếu.</p>');
+                $('#confirmBooking').prop('disabled', true);
             }
         }
     });
-
-
 </script>

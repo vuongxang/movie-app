@@ -3,8 +3,12 @@
 @section('title', $movie->title)
 @section('breadcrumbs')
     <!-- Breadcrumbs -->
-    <div>
-        {!! Breadcrumbs::render('movies.detail') !!}
+    <div class="breadcrumb-wrapper">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {!! Breadcrumbs::render('movies.detail', $movie) !!}
+            </ol>
+        </nav>
     </div>
 @endsection
 @section('content')
@@ -60,12 +64,12 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                           aria-selected="true">Chi tiết</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                           aria-selected="true" style="color: #e71a0f; font-weight: bold; border-top: 3px solid #e71a0f;">Chi tiết</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                           aria-controls="profile" aria-selected="false">Trailer</a>
+                           aria-controls="profile" aria-selected="false" style="color: #333; font-weight: bold;">Trailer</a>
                     </li>
                 </ul>
 
